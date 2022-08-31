@@ -1,0 +1,247 @@
+%@TheDoctorRAB - sjroot
+%standard white paper/preproposal format
+%
+%%%%%%
+%
+%REFERENCES
+%neup.bst - numbered citations in order of appearance, short author list with et al in reference section
+%nsf.bst - numbered citations in order of appearance, full author list in references section
+%standard.bst - citations with author last name with et al for more than 2 authors; full author list in references section
+%ans.bst is for ANS only.
+%
+%author = {Lastname, Firstname and Lastname, Firstname and Lastname, Firstname} for all bst formats
+%bst renders the author list itself
+%
+%author = {{Nuclear Regulatory Commission}} if the author is an organization, institution, etc., and not people
+%
+%title = {{}} for all
+%
+%for all - use \citep{-} - [1] or (Borrelli, 2021) in the text
+%standard.bst \cite{-} - Borrelli (2021) in the text
+%standard.bst lists references alphabetically
+%the rest list numerically
+%
+%%%%%
+\documentclass[11pt,a4paper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{filecontents}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+%\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{C:/Users/sjroo/OneDrive/Documents/UIdaho/Coursework/Fall21/NE538/TermPaper/Final/img}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+
+%fonts
+%\usepackage{times}
+%arial - uncomment next two lines
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{tabto} %general tabbed spacing
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+%\usepackage[round,semicolon]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations
+\usepackage[numbers,sort&compress]{natbib} %use 'numbers' for numbered citations; 'round' for () instead [] for inline citations; nsf.bst
+\def\bibfont{\small}
+\usepackage{enumitem}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage[labelfont=bf]{caption}
+\usepackage{chngcntr}
+%\usepackage{hyperref}
+\usepackage{sectsty}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=small]{todonotes} %makes colored boxes for commenting
+\usepackage[toc,page]{appendix}
+\usepackage[figure,table]{totalcount}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+
+\usepackage[singlelinecheck=false]{caption}
+\captionsetup[table]{skip=7pt,labelformat={default},labelsep=period,name={Tab.}} %sets a space after table caption
+\captionsetup[figure]{skip=7pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+
+\usepackage{wrapfig}
+\setlength{\intextsep}{0.20mm}
+\setlength{\columnsep}{0.20mm}
+
+%\usepackage{xr} %for revisions - will cross reference from one file to here
+%\externaldocument{/path/to/auxfilename} %aux file needed
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\newcommand{\sk}[1]{\sout{#1}} %shortcut for strikethrough
+\newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
+
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+
+\newcommandx{\que}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}} %query
+\newcommandx{\sug}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}} %suggested change
+\newcommandx{\cmt}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}} %comment
+\newcommandx{\omt}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}} %omit
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} %uses \raggedright with p{} in table column
+
+\makeatletter
+\renewcommand\tableofcontents{%
+    \@starttoc{toc}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoffigures{%
+    \@starttoc{lof}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoftables{%
+    \@starttoc{lot}%
+}
+\makeatother
+
+\makeatletter
+\newcommand*\ftp{\fontsize{16.5}{17.5}\selectfont}
+\makeatother
+
+\makeatletter
+\renewcommand\section{%
+    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
+    {\normalfont \normalsize \bfseries}}%
+
+\makeatletter
+\renewcommand\paragraph{%
+    \@startsection{paragraph}{4}{\z@ }{0.25\baselineskip}{-1em}
+    {\normalfont \normalsize }}%
+
+\makeatletter
+\renewcommand\subparagraph{%
+    \@startsection{subparagraph}{5}{\z@ }{0.20\baselineskip}{-1em}
+    {\normalfont \normalsize \itshape }}%
+
+\makeatletter
+\renewcommand\subsection{%
+    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
+    { \large \normalsize \bfseries}}%
+
+\setlength{\bibsep}{0pt} %sets space between references
+\renewcommand{\bibsection}{} %suppresses large 'references' heading
+\renewcommand\bibpreamble{\vspace{-0.30\baselineskip}} %sets spacing after heading if not using default references heading
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+%\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+\renewcommand{\headrulewidth}{0.5pt} %turn off line in header
+\lhead{\scriptsize Sam Root}
+\chead{\scriptsize \textit{NE551 - Nuclear Fuel Reprocessing}}
+\rhead{\scriptsize \today}
+\rfoot{\thepage}
+
+
+\newacronym{msr}{MSR}{molten salt reactor}
+\newacronym{npr}{NPR}{nuclear power reactor}
+\newacronym{bat}{MsNB}{molten salt nuclear battery}
+\newacronym{UI}{UI-IF}{University of Idaho - Idaho Falls}
+\newacronym{reflex}{BeO}{Beryllium Oxide}
+\newacronym{abs}{{$B_4C$}}{Boron Carbide}
+\newacronym{mcnp}{MCNP}{Monte Carlo n-Particle}
+\newacronym{fuel}{HALEU}{High-Assay Low-Enriched Uranium}
+\newacronym{uf}{UF$_4$}{uranium tetrafluoride}
+\newacronym{salt}{$LiF_{0.465}NaF_{0.115}KF_{0.42}$}{FLiNaK}
+%spacing options
+%\onehalfspacing %linespacing
+%\setstretch{1.05} %linespacing
+\spacing{1.5} 
+
+
+%linenumbering
+%\linenumbers %toggle line numbers
+%\pagewiselinenumbers %reset line numbers on new page
+%\modulolinenumbers[3] %line numbering interval
+
+\newcommand{\B}[1][]{$^{#1}B$ }
+\newcommand{\I}[1][135]{$^{#1}I$ }
+\newcommand{\Xe}[1][135]{$^{#1}Xe$ }
+\newcommand{\Sa}[1][149]{$^{#1}Sa$ }
+\newcommand{\U}[1][]{$^{#1}U$ }
+\newcommand{\Pu}[1][239]{$^{#1}Pu$ }
+
+\begin{document}
+
+{\centering
+    \textbf{Reprocessing of Ceramic and Molten Salt Nuclear Fuels\\
+    NE551 - Nuclear Reactor Fuels\\
+    }
+    Sam Root\\
+    University of Idaho $\sq$ Idaho Falls Center for Higher Education\\
+    Department of Nuclear Engineering and Industrial Management
+\par
+}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.5pt}} %horizontal line spanning margins
+
+
+\section{Introduction}
+Nuclear reactors are messy. They produce power by splitting a fissile atom, most commonly \U[235] into countless exotic nuclides, many of which are highly radioactive. Further, the neutron fluence through the heavy metal fuels produces transuranic isotopes, which also can be radiological hazards \cite{intro}. Nuclear reactors are also heavy. Disposing of all of it as high-grade waste may be cost prohibitive, so the less hazardous materials should be separated before disposal. 
+
+An entire field of nuclear engineering, called reprocessing and recycling is focused on this issue \cite[Ch. 7]{cycle}. In addition, reprocessing can be used to give new life to used fuel \cite[Ch. 10]{chem}, since the reactor does not run to completion - fissile and fertile species remain. Nearly all commercial reactors are solid fueled, so recycling and reprocessing can only be performed after the fuel is removed from the reactor. Some reactor concepts, like the \acf{msr} utilize a liquid fuel which circulates with the coolant between the core and the primary heat exchange system \cite[Ch. 2]{fuel}. This opens the door to online refining which extends the lifetime of the fuel by stripping out poisons such as \Xe and \Sa, restoring excess reactivity to the core. 
+
+\section{Overview of the Nuclear Fuel Cycle}
+Like any raw material, nuclear fuel begins in the ground. Its destination, too, is in the ground. It is almost always inert before processing, with a notable exception at the Oklo mine in Gabon \cite{Oklo}. This paper is focused primarily on nuclear fuel reprocessing and recycling, with an extra look into molten salt refining, but it is still worth briefly discussing how we turn bedrock into electricity to better understand where the material we are reprocessing comes from. Similarly, it is important to understand what happens downstream from the reprocessing facility to show why it is important.
+
+\subsection{Mining and Milling}
+An ore-bed is first identified, often by finding locations with higher than normal background radiation \cite[Ch. 2]{cycle}. The ore, containing $U_3O_8$, is then taken out of the ground by open pit mining, underground mining, or \textit{in-situ} leaching, where a leachant is pumped into the ground to extract the ore without digging. In the particular case of underground mining, precautions must be taken to prevent long-term exposure to radon and uranium dust from harming workers \cite{radon}. The ore is then concentrated to yellow-cake uranium by a series of steps, beginning with communition and roasting to a size small enough to be effectively leached (note: This step is not required when uranium is mined by \textit{in-situ} leaching.) in an acidic and oxidizing solution. Tailings are thickened and stored in waste ponds, which contain radium and other decay products and require proper radiological management \cite[Ch. 2]{cycle}. Organic solvent extraction and ammonium chloride stripping purify the $U_3O_8$, which can be precipitated using ammonia and dried into a powdered concentrate.
+
+\subsection{Conversion and Enrichment}
+The powdered concentrate is purified using a solvent extraction process, either organic or peroxide based. It is then converted by a two step process \cite[Ch. 3]{cycle}: 
+1) hydrofluoration to uranium tetrafluoride ($U_3O_8 + 4HF \to UF_4 + 2H_2O$); and 2) fluoration to uranium hexafluoride ($ UF_4 + F_2 \to UF_6$), which is a gas. The ratio of \U[235] to \U2[238] can be increased in a centrifuge, which spins to separate the species by weight \cite[Ch. 14]{chem}. After many stages, the enriched $UF_6$ is pressurized to deposition so it can be stored and shipped as a solid.
+
+\subsection{Fuel Design and Fabrication}
+Enriched uranium is converted from $UF_6$ into the desired form (metallic or ceramic) $UO_2$ is the most common fuel, and is formed by: 1) bubbling the gas through water ($UF_6 + H_2O \to UO_2F_2$); 2) precipitating as ammonium diuranate (ADU) with ammonia; 3) calcining to $U_3O_8$ and reducing to $UO_2$ with hydrogen; and 4) powdering, binding, pressing, and sintering to form pellets. These pellets are placed in cladding tubes with room for fission gasses. The cladding is often made from zirconium alloys, or Zircaloys \cite[Ch. 1]{mat}. Zirconium ore always contains hafnium, a notable neutron absorbing material, so proper separation is required to ensure the cladding has good neutronic properties \cite[Ch. 7
+]{chem}
+
+\subsection{Storage}
+After fuel rods are taken out of the reactor, they are placed in a spent fuel pool on-site to cool down \cite[Ch. 4]{intro, store}. These have limited capacity, hence the need to reprocess spent fuel and prepare for long-term storage. Reprocessed waste could be casked and buried forever in a well-characterized geologic storage such as Yucca Mountain \cite{yucca} in Nevada (development on this site has been tabled indefinitely), or Onkalo in Finland \cite{onkalo}.
+
+\section{Conventional Nuclear Fuel Reprocessing and Recycling}
+
+
+\section{Molten Salt Electrorefining}
+
+
+\section{Conclusions}
+
+
+\section*{References}
+\bibliographystyle{nsf}
+\bibliography{References.bib}
+
+\end{document}
