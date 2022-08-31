@@ -30,7 +30,7 @@
 \usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
 \usepackage{graphicx}
 \usepackage{subfig}
-\usepackage{filecontents}
+%\usepackage{filecontents}
 \usepackage{tablefootnote}
 \usepackage{footnotehyper}
 %\usepackage{subfig}
@@ -75,7 +75,7 @@
 \usepackage[toc,page]{appendix}
 \usepackage[figure,table]{totalcount}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
-\makenoidxglossaries
+%\makenoidxglossaries
 
 \usepackage[singlelinecheck=false]{caption}
 \captionsetup[table]{skip=7pt,labelformat={default},labelsep=period,name={Tab.}} %sets a space after table caption
@@ -167,6 +167,7 @@
 
 
 \newacronym{msr}{MSR}{molten salt reactor}
+\newacronym{lwr}{LWR}{light water reactor}
 \newacronym{npr}{NPR}{nuclear power reactor}
 \newacronym{bat}{MsNB}{molten salt nuclear battery}
 \newacronym{UI}{UI-IF}{University of Idaho - Idaho Falls}
@@ -176,11 +177,11 @@
 \newacronym{fuel}{HALEU}{High-Assay Low-Enriched Uranium}
 \newacronym{uf}{UF$_4$}{uranium tetrafluoride}
 \newacronym{salt}{$LiF_{0.465}NaF_{0.115}KF_{0.42}$}{FLiNaK}
+\newacronym{tbp}{TBP}{tri-$n$-butyl phosphate}
 %spacing options
 %\onehalfspacing %linespacing
 %\setstretch{1.05} %linespacing
 \spacing{1.5} 
-
 
 %linenumbering
 %\linenumbers %toggle line numbers
@@ -210,7 +211,7 @@
 
 
 \section{Introduction}
-Nuclear reactors are messy. They produce power by splitting a fissile atom, most commonly \U[235] into countless exotic nuclides, many of which are highly radioactive. Further, the neutron fluence through the heavy metal fuels produces transuranic isotopes, which also can be radiological hazards \cite{intro}. Nuclear reactors are also heavy. Disposing of all of it as high-grade waste may be cost prohibitive, so the less hazardous materials should be separated before disposal. 
+Nuclear reactors are messy. They produce power by splitting a fissile atom, most commonly \U[235] into countless exotic nuclides, many of which are highly radioactive and some which negatively contribute to the neutron economy in the core. Further, the neutron fluence through the heavy metal fuels produces transuranic isotopes, which also can be radiological hazards \cite{intro}, but can be useful, as they (particularly \Pu) can themselves serve as fission fuel.
 
 An entire field of nuclear engineering, called reprocessing and recycling is focused on this issue \cite[Ch. 7]{cycle}. In addition, reprocessing can be used to give new life to used fuel \cite[Ch. 10]{chem}, since the reactor does not run to completion - fissile and fertile species remain. Nearly all commercial reactors are solid fueled, so recycling and reprocessing can only be performed after the fuel is removed from the reactor. Some reactor concepts, like the \acf{msr} utilize a liquid fuel which circulates with the coolant between the core and the primary heat exchange system \cite[Ch. 2]{fuel}. This opens the door to online refining which extends the lifetime of the fuel by stripping out poisons such as \Xe and \Sa, restoring excess reactivity to the core. 
 
@@ -231,7 +232,14 @@ Enriched uranium is converted from $UF_6$ into the desired form (metallic or cer
 \subsection{Storage}
 After fuel rods are taken out of the reactor, they are placed in a spent fuel pool on-site to cool down \cite[Ch. 4]{intro, store}. These have limited capacity, hence the need to reprocess spent fuel and prepare for long-term storage. Reprocessed waste could be casked and buried forever in a well-characterized geologic storage such as Yucca Mountain \cite{yucca} in Nevada (development on this site has been tabled indefinitely), or Onkalo in Finland \cite{onkalo}.
 
-\section{Conventional Nuclear Fuel Reprocessing and Recycling}
+\section{Reprocessing and Recycling}
+After \acf{lwr} fuel is removed from the reactor, it still contains as much as 33\% of fissile atoms (\U[235] plus transuranics like \Pu) that it began with \cite[Ch. 7]{cycle}. By reprocessing the spent fuel, these nuclides can be isolated and recovered. They can then be recycled into new fuel, such as MOX, or mixed oxide fuel, which appropriately consists of a mixture of $UO_2$ and $PuO_2$. This is like burning a gallon of gas in our car, catching the combustion gasses, and using them to drive another 10 miles. Unfortunately, the processes outlined below are not allowed in the power reactor fuel cycles due to non-proliferation concerns.
+
+\subsection{PUREX Process}
+Among the most prevalent reprocessing methods is the PUREX process; a liquid-liquid extraction process that manipulates valence states to selectively extract \U and \Pu[] into an organic solvent (\acf{tbp} blended with kerosene), and then strip it back into the aqueous phase for recovery \cite[Ch. 7]{cycle}. The fuel is broken into pieces and dissolved into nitric acid, then extracted into the organic phase by forming a +2 oxidation complex with \acs{tbp} \cite{purex}. The \Pu is then reduced to plutonium (III) using hydrazine and (historically) ferrous sulfamate so that it can be stripped into fresh water while leaving the uranium in the solvent. This pure stream of plutonium is what threatens non-proliferation. The uranium is recovered in a similar manner, by stripping with copius amounts of hot dilute nitric acid so the organic solvent can be re-utilize \cite{INLpurex}. 
+
+\subsection{Recycling}
+The most common use for the plutonium recovered by fuel reprocessing is to make MOX by combining it with depleted uranium \cite[Ch. 7]{cycle}. The uranium recovered is converted from uranyl nitrate to $UF_6$ for enrichment, or, in the case of reprocessing a highly enriched fuel \cite{HALEU} (such as those from decomissioned nuclear weapons) it may instead be converted to $UF_4$, a common fuel for circulating \acfp{msr} \cite{CarterPHD,PetersonMS}. As was alluded earlier, plutonium is not the only transuranic element produced in a nuclear reactor. isotopes of neptunium, americium, curium, berkelium, californium, einsteinium, and fermium are also produced. These so-called \textit{minor actinides} are left in the initial aqueous phase in the PUREX process and can also be recycled, primarily as a disposal means. Many of the aformentioned species are radioactive with exceptionally long half-lifes. If they are diverted from disposal streams into the fuel stream of \acsp{msr}, they may be burned (a term commonly used to describe endothermic fission of undesirable nuclides) to decrease the activity, persistence, and stock-pile of high-level waste \cite{RoperReview}.
 
 
 \section{Molten Salt Electrorefining}
@@ -239,7 +247,7 @@ After fuel rods are taken out of the reactor, they are placed in a spent fuel po
 
 \section{Conclusions}
 
-
+\newpage
 \section*{References}
 \bibliographystyle{nsf}
 \bibliography{References.bib}
