@@ -16,6 +16,7 @@
 %
 %title = {{}} for all
 %
+
 %for all - use \citep{-} - [1] or (Borrelli, 2021) in the text
 %standard.bst \cite{-} - Borrelli (2021) in the text
 %standard.bst lists references alphabetically
@@ -243,11 +244,17 @@ The most common use for the plutonium recovered by fuel reprocessing is to make 
 
 
 \section{Molten Salt Electrorefining}
+Another reprocessing method is under development at Argonne National Lab \cite[Ch. 7]{cycle} which takes advantage of the conductivity of molten salts to supply the required redox potential with electricity rather than expensive and toxic chemical reagents. This is by nature also a pyrometallurgical process at 500 degrees Celcius. The electrorefiner is composed of a steel cathode, an anode basket into which used fuel is loaded, and a molten halide salt electrolyte \cite{RoperReview}. The fuel dissolves into the solution, and the uranium deposits on the cathode alongside rare-earths; the plutonium does not deposit due to ionic complexes with the halides in solution. This process has the advantage of keeping the minor actinides with the plutonium so they can be easily burned rather than disposed of with high-level waste.    
 
+\section{\acs{msr} Online Reprocessing}
+Liquid fueled \acfp{msr} provide a distinct advantage over solid fueled reactors on the topic of reprocessing - The fuel, as well as minor actinides and fission products, circulate, spending time outside of the core during operation. This means that the fuel can be reprocessed, removing fission gasses and soluble poisons on the fly without the need for recycling. First, xenon, krypton, helium-3, helium-4, and tritium are stripped from solution by bubbling helium gas through the salt \cite{MSROnline}. Then, noble and semi-nobel metals, are precipitated on a nickel filter before lanthanides, soluble fission products, and corrosion impurities are selectively extracted by liquid metals such as  cadmium, zinc, and bismuth. These processes combine to remove entrained negative reactivity from the fuel and increase its lifetime, allowing a significantly higher burn-up fraction to be attained.
+
+Thorium based \acsp{msr} utilize nuclide separation when the salt is outside of the core as well. These reactors operate by breeding \U[233]; a step in this process includes the beta decay of proactinium-233, which has a halflife two orders of magnitude longer than the other steps in the process. As such, it may be separated from the rest of the salt mixture either by electroseparation or by fluoride volatilization until it decays into the fissile uranium-233 \cite{Thorium}.  
 
 \section{Conclusions}
+Nuclear fuel reprocessing and recycling is an important field with exciting advances on the horizon. It shows the potential to improve uranium utilization in the fuel cycle by up to 25\% at manageable energy costs. Unfortunately, at least in this country, political concerns stand in the way of taking advantage of this technology at a consequential scale. As such, we are left with a sub-optimal fuel cycle and unnecessarily endurant waste. With some luck, we may see these restrictions loosened to take full advantage of Gen IV \acsp{msr}' rise to prominence.
 
-\newpage
+
 \section*{References}
 \bibliographystyle{nsf}
 \bibliography{References.bib}
